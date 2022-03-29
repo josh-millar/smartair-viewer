@@ -22,7 +22,7 @@ jobs:
         with:
           python-version: '3.8'
 
-      - name: Install X11 dependencies:
+      - name: Install X11 dependencies
         run: apt-get install libx11-6:i386 libstdc++5:i386
         
       - name: Create and start virtual environment
