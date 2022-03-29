@@ -1,0 +1,16 @@
+solid zone0
+ facet normal 0 -0 -1
+  outer loop
+   vertex 14.7241 3.14787 2.5182
+   vertex 14.7241 3.12887 2.5182
+   vertex 14.1141 3.12887 2.5182
+  endloop
+ endfacet
+ facet normal -0 0 -1
+  outer loop
+   vertex 14.7241 3.14787 2.5182
+   vertex 14.1141 3.12887 2.5182
+   vertex 14.1141 3.14787 2.5182
+  endloop
+ endfacet
+endsolid zone0

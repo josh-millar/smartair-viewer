@@ -1,0 +1,72 @@
+solid zone0
+ facet normal 0 -0 1
+  outer loop
+   vertex 6.32933 25.5126 2.7682
+   vertex 6.32933 26.1226 2.7682
+   vertex 6.31033 26.1226 2.7682
+  endloop
+ endfacet
+ facet normal 0 0 1
+  outer loop
+   vertex 6.32933 25.5126 2.7682
+   vertex 6.31033 26.1226 2.7682
+   vertex 6.31033 25.5126 2.7682
+  endloop
+ endfacet
+ facet normal -1 0 0
+  outer loop
+   vertex 6.31033 26.1226 2.5182
+   vertex 6.31033 25.5126 2.5182
+   vertex 6.31033 25.5126 2.7682
+  endloop
+ endfacet
+ facet normal -1 0 0
+  outer loop
+   vertex 6.31033 26.1226 2.5182
+   vertex 6.31033 25.5126 2.7682
+   vertex 6.31033 26.1226 2.7682
+  endloop
+ endfacet
+ facet normal 0 1 0
+  outer loop
+   vertex 6.32933 26.1226 2.5182
+   vertex 6.31033 26.1226 2.5182
+   vertex 6.31033 26.1226 2.7682
+  endloop
+ endfacet
+ facet normal 0 1 -0
+  outer loop
+   vertex 6.32933 26.1226 2.5182
+   vertex 6.31033 26.1226 2.7682
+   vertex 6.32933 26.1226 2.7682
+  endloop
+ endfacet
+ facet normal 1 0 0
+  outer loop
+   vertex 6.32933 25.5126 2.5182
+   vertex 6.32933 26.1226 2.5182
+   vertex 6.32933 26.1226 2.7682
+  endloop
+ endfacet
+ facet normal 1 0 0
+  outer loop
+   vertex 6.32933 25.5126 2.5182
+   vertex 6.32933 26.1226 2.7682
+   vertex 6.32933 25.5126 2.7682
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 6.31033 25.5126 2.5182
+   vertex 6.32933 25.5126 2.5182
+   vertex 6.32933 25.5126 2.7682
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 6.31033 25.5126 2.5182
+   vertex 6.32933 25.5126 2.7682
+   vertex 6.31033 25.5126 2.7682
+  endloop
+ endfacet
+endsolid zone0

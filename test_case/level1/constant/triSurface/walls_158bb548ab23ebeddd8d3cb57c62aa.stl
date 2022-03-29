@@ -1,0 +1,142 @@
+solid zone0
+ facet normal 1 0 0
+  outer loop
+   vertex 21.1452 12.4542 2.5432
+   vertex 21.1452 12.7542 2.5432
+   vertex 21.1452 12.7542 2.7682
+  endloop
+ endfacet
+ facet normal 1 0 0
+  outer loop
+   vertex 21.1452 12.4542 2.5432
+   vertex 21.1452 12.7542 2.7682
+   vertex 21.1452 12.4542 2.7682
+  endloop
+ endfacet
+ facet normal 1 0 0
+  outer loop
+   vertex 21.1452 12.1542 2.5432
+   vertex 21.1452 12.4542 2.5432
+   vertex 21.1452 12.4542 2.7682
+  endloop
+ endfacet
+ facet normal 1 0 0
+  outer loop
+   vertex 21.1452 12.1542 2.5432
+   vertex 21.1452 12.4542 2.7682
+   vertex 21.1452 12.1542 2.7682
+  endloop
+ endfacet
+ facet normal 0 1 0
+  outer loop
+   vertex 21.4452 12.1542 2.5432
+   vertex 21.1452 12.1542 2.5432
+   vertex 21.1452 12.1542 2.7682
+  endloop
+ endfacet
+ facet normal 0 1 -0
+  outer loop
+   vertex 21.4452 12.1542 2.5432
+   vertex 21.1452 12.1542 2.7682
+   vertex 21.4452 12.1542 2.7682
+  endloop
+ endfacet
+ facet normal 0 1 0
+  outer loop
+   vertex 21.7452 12.1542 2.5432
+   vertex 21.4452 12.1542 2.5432
+   vertex 21.4452 12.1542 2.7682
+  endloop
+ endfacet
+ facet normal 0 1 -0
+  outer loop
+   vertex 21.7452 12.1542 2.5432
+   vertex 21.4452 12.1542 2.7682
+   vertex 21.7452 12.1542 2.7682
+  endloop
+ endfacet
+ facet normal -1 0 0
+  outer loop
+   vertex 21.7452 12.4542 2.5432
+   vertex 21.7452 12.1542 2.5432
+   vertex 21.7452 12.1542 2.7682
+  endloop
+ endfacet
+ facet normal -1 0 0
+  outer loop
+   vertex 21.7452 12.4542 2.5432
+   vertex 21.7452 12.1542 2.7682
+   vertex 21.7452 12.4542 2.7682
+  endloop
+ endfacet
+ facet normal -1 0 0
+  outer loop
+   vertex 21.7452 12.7542 2.5432
+   vertex 21.7452 12.4542 2.5432
+   vertex 21.7452 12.4542 2.7682
+  endloop
+ endfacet
+ facet normal -1 0 0
+  outer loop
+   vertex 21.7452 12.7542 2.5432
+   vertex 21.7452 12.4542 2.7682
+   vertex 21.7452 12.7542 2.7682
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 21.4452 12.7542 2.5432
+   vertex 21.7452 12.7542 2.5432
+   vertex 21.7452 12.7542 2.7682
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 21.4452 12.7542 2.5432
+   vertex 21.7452 12.7542 2.7682
+   vertex 21.4452 12.7542 2.7682
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 21.1452 12.7542 2.5432
+   vertex 21.4452 12.7542 2.5432
+   vertex 21.4452 12.7542 2.7682
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 21.1452 12.7542 2.5432
+   vertex 21.4452 12.7542 2.7682
+   vertex 21.1452 12.7542 2.7682
+  endloop
+ endfacet
+ facet normal 0 -0 1
+  outer loop
+   vertex 21.7452 12.1542 2.7682
+   vertex 21.7452 12.7542 2.7682
+   vertex 21.1452 12.7542 2.7682
+  endloop
+ endfacet
+ facet normal 0 0 1
+  outer loop
+   vertex 21.7452 12.1542 2.7682
+   vertex 21.1452 12.7542 2.7682
+   vertex 21.1452 12.1542 2.7682
+  endloop
+ endfacet
+ facet normal 0 0 -1
+  outer loop
+   vertex 21.7452 12.1542 2.4932
+   vertex 21.1452 12.1542 2.4932
+   vertex 21.1452 12.7542 2.4932
+  endloop
+ endfacet
+ facet normal 0 0 -1
+  outer loop
+   vertex 21.7452 12.1542 2.4932
+   vertex 21.1452 12.7542 2.4932
+   vertex 21.7452 12.7542 2.4932
+  endloop
+ endfacet
+endsolid zone0

@@ -1,0 +1,72 @@
+solid zone0
+ facet normal 0 0 1
+  outer loop
+   vertex 20.2292 34.7029 2.7682
+   vertex 18.7292 34.7029 2.7682
+   vertex 18.7292 34.6529 2.7682
+  endloop
+ endfacet
+ facet normal 0 0 1
+  outer loop
+   vertex 20.2292 34.7029 2.7682
+   vertex 18.7292 34.6529 2.7682
+   vertex 20.2292 34.6529 2.7682
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 18.7292 34.6529 2.5182
+   vertex 20.2292 34.6529 2.5182
+   vertex 20.2292 34.6529 2.7682
+  endloop
+ endfacet
+ facet normal 0 -1 0
+  outer loop
+   vertex 18.7292 34.6529 2.5182
+   vertex 20.2292 34.6529 2.7682
+   vertex 18.7292 34.6529 2.7682
+  endloop
+ endfacet
+ facet normal -1 0 0
+  outer loop
+   vertex 18.7292 34.7029 2.5182
+   vertex 18.7292 34.6529 2.5182
+   vertex 18.7292 34.6529 2.7682
+  endloop
+ endfacet
+ facet normal -1 0 0
+  outer loop
+   vertex 18.7292 34.7029 2.5182
+   vertex 18.7292 34.6529 2.7682
+   vertex 18.7292 34.7029 2.7682
+  endloop
+ endfacet
+ facet normal 0 1 0
+  outer loop
+   vertex 20.2292 34.7029 2.5182
+   vertex 18.7292 34.7029 2.5182
+   vertex 18.7292 34.7029 2.7682
+  endloop
+ endfacet
+ facet normal 0 1 -0
+  outer loop
+   vertex 20.2292 34.7029 2.5182
+   vertex 18.7292 34.7029 2.7682
+   vertex 20.2292 34.7029 2.7682
+  endloop
+ endfacet
+ facet normal 1 0 0
+  outer loop
+   vertex 20.2292 34.6529 2.5182
+   vertex 20.2292 34.7029 2.5182
+   vertex 20.2292 34.7029 2.7682
+  endloop
+ endfacet
+ facet normal 1 0 0
+  outer loop
+   vertex 20.2292 34.6529 2.5182
+   vertex 20.2292 34.7029 2.7682
+   vertex 20.2292 34.6529 2.7682
+  endloop
+ endfacet
+endsolid zone0
