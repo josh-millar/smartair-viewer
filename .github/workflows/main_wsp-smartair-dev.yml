@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
+      - name: apt update
+        run: sudo apt update
+        
       - name: Set up x11
         run: sudo apt-get install -y libx11-dev libx11-6 libsm6 libxext6 libgl1-mesa-dev libxrender1
         
