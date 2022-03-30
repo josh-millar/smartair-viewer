@@ -23,7 +23,7 @@ jobs:
           python-version: '3.8'
 
       - name: Install X11 dependencies
-        run: sudo apt-get install libx11-dev
+        run: sudo apt-get install libx11-6
         
       - name: Create and start virtual environment
         run: |
