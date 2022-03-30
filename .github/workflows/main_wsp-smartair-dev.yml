@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Set up x11
-        run: sudo apt-get install -y libx11-dev
+        run: sudo apt-get install -y libx11-dev libx11-6 libsm6 libxext6 libgl1-mesa-dev libxrender1
         
       - name: Set up Python version
         uses: actions/setup-python@v1
