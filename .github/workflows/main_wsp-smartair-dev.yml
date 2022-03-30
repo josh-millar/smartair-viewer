@@ -16,7 +16,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
+      
+      - name: Set up x11
+        run: apt-get install -y libx11-dev
+        
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
