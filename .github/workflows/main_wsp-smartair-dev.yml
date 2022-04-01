@@ -68,4 +68,5 @@ jobs:
         with:
           app-name: 'wsp-smartair-dev'
           slot-name: 'Production'
+          general-settings-json: '{"Startup Command":"startup.sh"}'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0FCE145F8FC84EF9A81C299926632702 }}
