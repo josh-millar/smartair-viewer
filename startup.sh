@@ -8,5 +8,3 @@ apt-get install -y libsm6
 apt-get install -y libxext6 
 apt-get install -y libgl1-mesa-dev 
 apt-get install -y libxrender1 
-
-gunicorn --bind=0.0.0.0 --timeout 600 app:app
