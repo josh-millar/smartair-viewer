@@ -183,7 +183,6 @@ class Viz:
                 dash_vtk.Mesh(state=plane_mesh),
             ],
         )
-        print(field)
         return plane_representation
 
     def computeACH(self, plane_data, inlet_air=0.10):
@@ -349,7 +348,11 @@ sidebar = html.Div(
 )
 
 
-content = html.Div(id="vtk_vis", className="content", style={"width": "100%", "height": "calc(100vh - 30px)"})
+content = html.Div(
+    id="vtk_vis", 
+    className="content", 
+    style={"width": "100%", "height": "calc(100vh - 30px)"}
+    )
 app.layout = html.Div([sidebar, content])
 
 @app.callback(
@@ -368,15 +371,18 @@ def getlevels(search):
     parsed = urllib.parse.urlparse(search)
     try:
         case = parsed.query.split("=")[1]
-        path_prefix = "/mnt/cfdrun/smartair/dash/"
+        # path_prefix = "/mnt/cfdrun/smartair/dash/"
+        path_prefix = "./"
         levels = [
             level
             for level in os.listdir(os.path.join(path_prefix, case))
             if level.startswith("level")
         ]
         value = levels[0]
-    except:
+    except IndexError:
         case = "No analysis specified in url"
+        levels = [0]
+        value = 0
     return case, levels, value
 
 
@@ -392,17 +398,24 @@ def getlevels(search):
 )
 def updatecasedir(vis_value, level_value, fresh_air_value, search):
     parsed = urllib.parse.urlparse(search)
-    case = parsed.query.split("=")[1]
-    path_prefix = "./"
-    case_dir = os.path.join(path_prefix, case, level_value)
-    vis.case_directory = os.path.join(path_prefix, case, level_value)
-    geom, edges = vis.getgeomrepresenation("walls")
-    visplane = vis.getcontourrepresentation(vis_value, fresh_air_value * 0.01)
-    vtk_vis = dash_vtk.View(background=[1, 1, 1], children=[geom, edges, visplane])
+    if "=" in parsed.query:
+        parsed = urllib.parse.urlparse(search)
+        case = parsed.query.split("=")[1]
+        path_prefix = "./"
+        case_dir = os.path.join(path_prefix, case, level_value)
+        vis.case_directory = os.path.join(path_prefix, case, level_value)
+        geom, edges = vis.getgeomrepresenation("walls")
+        visplane = vis.getcontourrepresentation(vis_value, fresh_air_value * 0.01)
+        vtk_vis = dash_vtk.View(background=[1, 1, 1], children=[geom, edges, visplane])
+    else:
+        vtk_vis = html.Img(
+            src=app.get_asset_url("smartair_logo.png"), 
+            style={"width": "80%"}
+            )
     fresh_air_percent = str(fresh_air_value) + "%"
 
     return vtk_vis, fresh_air_percent
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True, port=8000)
+    app.run_server(debug=True) #, port=8000)
