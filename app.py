@@ -371,8 +371,8 @@ def getlevels(search):
     parsed = urllib.parse.urlparse(search)
     try:
         case = parsed.query.split("=")[1]
-        # path_prefix = "/mnt/cfdrun/smartair/dash/"
-        path_prefix = "./"
+        path_prefix = "/mnt/cfdrun/smartair/dash/"
+        # path_prefix = "./"
         levels = [
             level
             for level in os.listdir(os.path.join(path_prefix, case))
