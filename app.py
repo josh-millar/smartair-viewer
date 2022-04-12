@@ -401,7 +401,7 @@ def updatecasedir(vis_value, level_value, fresh_air_value, search):
     if "=" in parsed.query:
         parsed = urllib.parse.urlparse(search)
         case = parsed.query.split("=")[1]
-        path_prefix = "./"
+        path_prefix = "/mnt/cfdrun/smartair/dash/"
         case_dir = os.path.join(path_prefix, case, level_value)
         vis.case_directory = os.path.join(path_prefix, case, level_value)
         geom, edges = vis.getgeomrepresenation("walls")
