@@ -418,4 +418,5 @@ def updatecasedir(vis_value, level_value, fresh_air_value, search):
 
 
 if __name__ == "__main__":
-    app.run_server(debug=True) #, port=8000)
+    port = os.environ.get("PORT")
+    app.run_server(host="0.0.0.0", port=port, debug=True)
