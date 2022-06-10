@@ -35,10 +35,10 @@ class Viz:
         # dict to map the desired fields to their primitive fields, and
         # define the corresponding colorbar
         self.fields_dict = {
-            "ACH": ["AoA", "Black, Blue and White"],
-            "FAR": ["AoA", "Viridis (matplotlib)"],
-            "CO2": ["CO2", "Cool to Warm"],
-            "U": ["U", "Rainbow Desaturated"],
+            "ACH": ["AoA", "Black, Blue and White", [-2, 0]],
+            "FAR": ["AoA", "Viridis (matplotlib)", [-0.8, 0]],
+            "CO2": ["CO2", "Cool to Warm", [0, 1000]],
+            "U": ["U", "Rainbow Desaturated", [0, 0.4]],
         }
 
     def getgeomrepresenation(self, stl_name, opacity=1.0):
@@ -131,6 +131,7 @@ class Viz:
         # select the correct properties for the outfield requested
         in_field = self.fields_dict[field][0]
         colormap = self.fields_dict[field][1]
+        scalar_range = self.fields_dict[field][2]
 
         def findlatesttime(self, postprocdir):
             """Helper to get the correct post-processing files"""
@@ -168,15 +169,15 @@ class Viz:
             out_data = plane_data
 
         plane_mesh = to_mesh_state(out_data, field_to_keep=field)
-
         plane_representation = dash_vtk.GeometryRepresentation(
             colorMapPreset=colormap,
-            colorDataRange=[0, 2],
+            colorDataRange=scalar_range,
             mapper={
                 "colorByArrayName": field,
+                "colorMode": 0,
                 "scalarMode": 0,
                 "interpolateScalarsBeforeMapping": True,
-                "useInvertibleColors": True,
+                "useInvertibleColors": False,
             },
             property={"ambient": 0.3},
             children=[
@@ -203,13 +204,15 @@ class Viz:
         calculator = vtk.vtkArrayCalculator()
         calculator.SetInputData(plane_data)
         calculator.AddScalarArrayName("AoA")
-        calculator.SetFunction("3600 / {} * {}".format("AoA", str(inlet_air)))
+        # note the -1 factor, this is just to achieve the reversed
+        # transfer function
+        calculator.SetFunction("-1 * 3600 / {} * {}".format("AoA", str(inlet_air)))
         calculator.SetResultArrayName("ACH")
         calculator.Update()
 
         return calculator.GetOutput()
 
-    def computeFAR(self, plane_data, inlet_air=0.10):
+    def computeFAR(self, plane_data, inlet_air=0.06):
         """Computes the local fresh air rate defined as:
         FAR = FAI * inlet_flow_rate * inlet_air
         where FAI is the ratio of volumetric mean AoA to measured AoA
@@ -242,8 +245,10 @@ class Viz:
         calculator2 = vtk.vtkArrayCalculator()
         calculator2.SetInputData(calculator.GetOutput())
         calculator2.AddScalarArrayName("FAI")
+        # note the -1 factor, this is just to achieve the reversed
+        # transfer function
         calculator2.SetFunction(
-            "{} * {} * {}".format("FAI", str(self.total_flow * 0.001), str(inlet_air))
+            "-1 * {} * {} * {}".format("FAI", str(self.total_flow * 0.001), str(inlet_air))
         )
         calculator2.SetResultArrayName("FAR")
         calculator2.Update()
@@ -308,23 +313,26 @@ sidebar = html.Div(
                     ),
                     html.Div(
                         children=[
-                            html.Label("Level:"),
+                            html.Label("Select level:"),
                             dcc.Dropdown(
                                 id="levels",
-                                style={"margin-left": "5px", "width": "50%"},
+                                style={"width": "90%"},
                             ),
                         ],
                     ),
                     html.Br(),
                     html.Br(),
-                    html.P("Select visualisation field: "),
+                    html.Label("Select visualisation field: "),
                     dcc.Dropdown(
-                        ["U", "FAR", "ACH"], "U", id="vis_field", style={"width": "50%"}
+                        ["Velocity", "Fresh air rate", "Fresh air changes hourly"], 
+                        "Velocity", 
+                        id="vis_field", 
+                        style={"width": "90%"}
                     ),
                     html.Br(),
                     html.Div(
                         children=[
-                            html.H5("Fresh air: ", style={"display": "inline-block"}),
+                            html.Label("Fresh air: ", style={"display": "inline-block"}),
                             html.Span(
                                 id="fresh_air_value", style={"display": "inline-block"}
                             ),
@@ -336,9 +344,10 @@ sidebar = html.Div(
                         min=0,
                         max=20,
                         step=1,
-                        value=10,
+                        value=6,
                         marks={0: "0%", 5: "5%", 10: "10%", 15: "15%", 20: "20%"},
                     ),
+                    html.Img(id="legend", style={"width": "100%"}) 
                 ],
                 className="sidebar-content"
             )
@@ -390,6 +399,7 @@ def getlevels(search):
 @app.callback(
     Output("vtk_vis", "children"),
     Output("fresh_air_value", "children"),
+    Output("legend", "src"),
     Input("vis_field", "value"),
     Input("levels", "value"),
     Input("fresh-air", "value"),
@@ -398,14 +408,18 @@ def getlevels(search):
 )
 def updatecasedir(vis_value, level_value, fresh_air_value, search):
     parsed = urllib.parse.urlparse(search)
+    vis_dict = {"Velocity": "U", 
+                "Fresh air changes hourly": "ACH",
+                "Fresh air rate": "FAR"}
     if "=" in parsed.query:
         parsed = urllib.parse.urlparse(search)
         case = parsed.query.split("=")[1]
         path_prefix = "/mnt/cfdrun/smartair/dash/"
+        # path_prefix = "./"
         case_dir = os.path.join(path_prefix, case, level_value)
         vis.case_directory = os.path.join(path_prefix, case, level_value)
         geom, edges = vis.getgeomrepresenation("walls")
-        visplane = vis.getcontourrepresentation(vis_value, fresh_air_value * 0.01)
+        visplane = vis.getcontourrepresentation(vis_dict[vis_value], fresh_air_value * 0.01)
         vtk_vis = dash_vtk.View(background=[1, 1, 1], children=[geom, edges, visplane])
     else:
         vtk_vis = html.Img(
@@ -413,10 +427,13 @@ def updatecasedir(vis_value, level_value, fresh_air_value, search):
             style={"width": "80%"}
             )
     fresh_air_percent = str(fresh_air_value) + "%"
+    imgstr = "legend_"+vis_dict[vis_value]+".png"
+    legend = app.get_asset_url(imgstr)
 
-    return vtk_vis, fresh_air_percent
+    return vtk_vis, fresh_air_percent, legend
 
 
 if __name__ == "__main__":
-    port = os.environ.get("PORT")
-    app.run_server(host="0.0.0.0", port=port, debug=True)
+    # port = os.environ.get("PORT")
+    # app.run_server(host="0.0.0.0", port=port, debug=True)
+    app.run_server(debug=True)
